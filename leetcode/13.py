@@ -9,7 +9,7 @@ class Solution:
                    'D': 500,
                    'M': 1000}
         res = 0
-        for a, b in zip(s, s[1 :]):
+        for a, b in zip(s, s[1:]):
             if mapping[a] < mapping[b]:
                 res -= mapping[a]
             else:
