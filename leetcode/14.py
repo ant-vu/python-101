@@ -70,3 +70,47 @@ class Solution:
         #     if flag:
         #         res = max(res, length)
         # return shortest[:res]
+
+# class TrieNode:
+#     def __init__(self):
+#         self.children = {}
+#         self.is_end = False
+#         self.link_count = 0
+    
+#     def add_child(self, char):
+#         if char not in self.children:
+#             self.children[char] = TrieNode()
+#             self.link_count += 1
+
+# class Trie:
+#     def __init__(self):
+#         self.root = TrieNode()
+    
+#     def insert(self, word):
+#         node = self.root
+#         for char in word:
+#             if char not in node.children:
+#                 node.add_child(char)
+#             node = node.children[char]
+#         node.is_end = True
+    
+#     def search_longest_prefix(self, word):
+#         node = self.root
+#         chars = []
+#         for char in word:
+#             if char in node.children and node.link_count == 1 and not node.is_end:
+#                 chars.append(char)
+#                 node = node.children[char]
+#             else:
+#                 break
+#         return "".join(chars)
+
+# class Solution:
+#     def longestCommonPrefix(self, q, strs: List[str]) -> str:
+#         # time: O(n^2), space: O(n^2)
+#         if len(strs) == 1:
+#             return strs[0]
+#         trie = Trie()
+#         for s in strs[1:]:
+#             trie.insert(s)
+#         return trie.search_longest_prefix(q)
