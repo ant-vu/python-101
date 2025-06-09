@@ -1,0 +1,13 @@
+class Solution:
+    def lengthOfLastWord(self, s: str) -> int:
+        # time: O(n), space: O(1)
+        l = None
+        r = None
+        for i in range(len(s) - 1, -1, -1):
+            if s[i].isalpha() and not r:
+                r = i
+            elif not s[i].isalpha() and r and not l:
+                l = i
+        if l == None:
+            l = -1
+        return r - l
