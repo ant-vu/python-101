@@ -1,16 +1,27 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         # time: O(n), space: O(1)
-        count = {}
+        last_seen = {}
         res = 0
         l = 0
         for r, c in enumerate(s):
-            count[c] = count.get(c, 0) + 1
-            while count[c] > 1:
-                count[s[l]] -= 1
-                l += 1
+            if c in last_seen and last_seen[c] >= l:
+                l = last_seen[c] + 1
             res = max(r - l + 1, res)
+            last_seen[c] = r
         return res
+
+        # time: O(n), space: O(1)
+        # count = {}
+        # res = 0
+        # l = 0
+        # for r, c in enumerate(s):
+        #     count[c] = count.get(c, 0) + 1
+        #     while count[c] > 1:
+        #         count[s[l]] -= 1
+        #         l += 1
+        #     res = max(r - l + 1, res)
+        # return res
 
         # time: O(n), space: O(1)
         # unique = set()
