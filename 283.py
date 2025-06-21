@@ -7,7 +7,14 @@ class Solution:
         l = 0
         for r in range(len(nums)):
             if nums[r] != 0:
-                nums[l] = nums[r]
+                nums[l], nums[r] = nums[r], nums[l]
                 l += 1
-        for r in range(l, len(nums)):
-            nums[r] = 0
+
+        # time: O(n), space: O(1)
+        # l = 0
+        # for r in range(len(nums)):
+        #     if nums[r] != 0:
+        #         nums[l] = nums[r]
+        #         l += 1
+        # for r in range(l, len(nums)):
+        #     nums[r] = 0
