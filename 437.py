@@ -6,6 +6,7 @@
 #         self.right = right
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+        # time: O(n^2), space: O(n)
         def helper(root, targetSum):
             nonlocal res
             if not root:
