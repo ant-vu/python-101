@@ -7,11 +7,32 @@
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         # time: O(n), space: O(n)
+        if not root:
+            return []
         res = []
-        def dfs(node):
-            if node:
-                dfs(node.left)
-                dfs(node.right)
-                res.append(node.val)
-        dfs(root)
+        prev = None
+        stack = []
+        while root or stack:
+            if root:
+                stack.append(root)
+                root = root.left
+            else:
+                root = stack[-1]
+                if not root.right or root.right == prev:
+                    res.append(root.val)
+                    stack.pop()
+                    prev = root
+                    root = None
+                else:
+                    root = root.right
         return res
+
+        # time: O(n), space: O(n)
+        # res = []
+        # def dfs(node):
+        #     if node:
+        #         dfs(node.left)
+        #         dfs(node.right)
+        #         res.append(node.val)
+        # dfs(root)
+        # return res
