@@ -6,11 +6,20 @@
 class Solution:
     def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
         # time: O(n), space: O(1)
-        while head and head.val == val:
-            head = head.next
-        cur = head
-        while cur and cur.next:
-            while cur.next and cur.next.val == val:
-                cur.next = cur.next.next
-            cur = cur.next
-        return head
+        ans = ListNode(0, head)
+        dummy = ans
+        while dummy:
+            while dummy.next and dummy.next.val == val:
+                dummy.next = dummy.next.next
+            dummy = dummy.next
+        return ans.next
+
+        # time: O(n), space: O(1)
+        # while head and head.val == val:
+        #     head = head.next
+        # cur = head
+        # while cur and cur.next:
+        #     while cur.next and cur.next.val == val:
+        #         cur.next = cur.next.next
+        #     cur = cur.next
+        # return head
