@@ -16,10 +16,10 @@ class Solution:
         
         if not root:
             return 0
-        right = getDepth(root.left, True) + 1
-        left = getDepth(root.right, False) + 1
-        if right == left:
-            return (2 ** right) - 1
+        left = getDepth(root.left, True) + 1
+        right = getDepth(root.right, False) + 1
+        if left == right:
+            return (2 ** left) - 1
         return 1 + self.countNodes(root.left) + self.countNodes(root.right)
 
         # time: O(n), space: O(n)
