@@ -1,6 +1,6 @@
 class Solution:
     def isUgly(self, n: int) -> bool:
-        # time: O(n), space: O(1)
+        # time: O(logn), space: O(1)
         if n <= 0:
             return False
         for p in (2, 3, 5):
@@ -8,7 +8,7 @@ class Solution:
                 n //= p
         return n == 1
 
-        # time: O(n), space: O(1)
+        # time: O(logn), space: O(1)
         # if n <= 0:
         #     return False
         # while n % 5 == 0:
