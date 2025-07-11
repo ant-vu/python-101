@@ -3,6 +3,7 @@
 
 public class Solution extends VersionControl {
     public int firstBadVersion(int n) {
+        // time: O(logn), space: O(1)
         int l = 1, r = n, m;
         while (l < r) {
             m = l + (r - l) / 2;
