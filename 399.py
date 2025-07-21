@@ -1,11 +1,10 @@
 class Solution:
     def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
-        # time: O(n + q), space: O(n)
+        # time: O(m + n), space: O(n)
         g = {}
         for (a, b), v in zip(equations, values):
             g.setdefault(a, {})[b] = v
             g.setdefault(b, {})[a] = 1.0 / v
-        
         def f(x, y):
             if x not in g or y not in g:
                 return -1.0
@@ -20,5 +19,4 @@ class Solution:
                     if n not in v:
                         s.append((n, r * g[c][n]))
             return -1.0
-        
         return [f(a, b) for a, b in queries]
