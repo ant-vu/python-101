@@ -1,32 +1,22 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
         # time: O(n), space: O(1)
-        if len(nums) == 0:
-            return 0
-        left = 0
-        right = 0
-        for n in nums:
-            left, right = right, max(right, left + n)
+        n = len(nums)
+        if n <= 2:
+            return max(nums)
+        left = nums[0]
+        mid = max(nums[0], nums[1])
+        for i in range(2, n):
+            right = max(mid, left + nums[i])
+            left = mid
+            mid = right
         return right
 
-        # time: O(n), space: O(1)
-        # if len(nums) == 0:
-        #     return 0
-        # memo = [-1] * (len(nums) + 1)
-        # memo[0] = 0
-        # memo[1] = nums[0]
-        # for i in range(1, len(nums)):
-        #     memo[i + 1] = max(memo[i], memo[i - 1] + nums[i])
-        # return memo[len(nums)]
-
         # time: O(n), space: O(n)
-        # memo = [-1] * len(nums)
-        # def helper(nums, i):
-        #     if i < 0:
-        #         return 0
-        #     elif memo[i] >= 0:
-        #         return memo[i]
-        #     res = max(helper(nums, i - 2) + nums[i], helper(nums, i - 1))
-        #     memo[i] = res
-        #     return res
-        # return helper(nums, len(nums) - 1)
+        # n = len(nums)
+        # if n <= 2:
+        #     return max(nums)
+        # dp = [nums[0]] + [max(nums[0], nums[1])] + [0] * (n - 2)
+        # for i in range(2, n):
+        #     dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])
+        # return dp[-1]
