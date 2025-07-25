@@ -1,35 +1,47 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        # time: O(n), space: O(1)
+        # time: O(n), space: O(n)
         n = len(nums)
         res = [1] * n
-        cur = 1
-        for i in range(len(nums)):
-            res[i] *= cur
-            cur *= nums[i]
-        cur = 1
-        for i in range(len(nums) - 1, -1, -1):
-            res[i] *= cur
-            cur *= nums[i]
+        l = 1
+        for i in range(n):
+            res[i] *= l
+            l *= nums[i]
+        r = 1
+        for i in range(n - 1, -1, -1):
+            res[i] *= r
+            r *= nums[i]
         return res
 
+        # time: O(n^2), space: O(n), TLE
+        # n = len(nums)
+        # res = [1] * n
+        # for i in range(n):
+        #     for j in range(n):
+        #         if i != j:
+        #             res[i] *= nums[j]
+        # return res
+
         # time: O(n), space: O(n)
-        # products = []
-        # cur = 1
-        # for n in nums:
-        #     cur *= n
-        #     products.append(cur)
-        # products_rev = []
-        # cur = 1
-        # for i in range(len(nums) - 1, -1, -1):
-        #     cur *= nums[i]
-        #     products_rev.insert(0, cur)
+        # prefixProducts = [nums[0]]
+        # curPrefix = nums[0]
+        # for n in nums[1:]:
+        #     curPrefix *= n
+        #     prefixProducts.append(curPrefix)
+
+        # suffixProducts = [nums[-1]]
+        # curSuffix = nums[-1]
+        # for n in nums[:-1][::-1]:
+        #     curSuffix *= n
+        #     suffixProducts.append(curSuffix)
+        # suffixProducts.reverse()
+
         # res = []
         # for i in range(len(nums)):
         #     if i == 0:
-        #         res.append(products_rev[1])
+        #         res.append(suffixProducts[1])
         #     elif i == len(nums) - 1:
-        #         res.append(products[-2])
+        #         res.append(prefixProducts[-2])
         #     else:
-        #         res.append(products[i - 1] * products_rev[i + 1])
+        #         res.append(prefixProducts[i - 1] * suffixProducts[i + 1])
         # return res
