@@ -1,9 +1,12 @@
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
-        # time: O(m*n), space: O(n)
-        if len(needle) > len(haystack):
-            return -1
-        for i in range(len(haystack) - len(needle) + 1):
-            if haystack[i : i + len(needle)] == needle:
+        # time: O(n), space: O(1)
+        m = len(haystack)
+        n = len(needle)
+        for i in range(m - n + 1):
+            if haystack[i:i+n] == needle:
                 return i
         return -1
+
+        # time: O(n), space: O(1)
+        # return haystack.find(needle)
