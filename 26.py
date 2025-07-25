@@ -1,29 +1,27 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         # time: O(n), space: O(1)
-        i = 1
-        for j in range(1, len(nums)):
-            if nums[j] != nums[i - 1]:
-                nums[i] = nums[j]
-                i += 1
-        return i
+        k = 1
+        for n in nums[1:]:
+            if n != nums[k - 1]:
+                nums[k] = n
+                k += 1
+        return k
 
         # time: O(n), space: O(1)
-        # left = 0
-        # last = float("-inf")
-        # for i in range(len(nums)):
-        #     if nums[i] > last:
-        #         last = nums[i]
-        #         nums[left] = nums[i]
-        #         left += 1
-        # return left
+        # k = 0
+        # for n in nums[1:]:
+        #     if n != nums[k]:
+        #         k += 1
+        #         nums[k] = n
+        # return k + 1
 
         # time: O(n), space: O(n)
-        # left = 0
         # seen = set()
-        # for i in range(len(nums)):
-        #     if nums[i] not in seen:
-        #         seen.add(nums[i])
-        #         nums[left] = nums[i]
-        #         left += 1
-        # return left
+        # k = 0
+        # for n in nums:
+        #     if n not in seen:
+        #         nums[k] = n
+        #         seen.add(n)
+        #         k += 1
+        # return k
