@@ -1,21 +1,15 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        # time: O(n), space: O(n)
-        clean = re.sub("[^a-zA-Z0-9]", "", s).lower()
-        l, r = 0, len(clean) - 1
+        # time: O(n), space: O(1)
+        l = 0
+        r = len(s) - 1
         while l < r:
-            if clean[l] != clean[r]:
+            while l < r and not s[l].isalnum():
+                l += 1
+            while l < r and not s[r].isalnum():
+                r -= 1
+            if l < r and s[l].lower() != s[r].lower():
                 return False
             l += 1
             r -= 1
         return True
-
-        # time: O(n), space: O(n)
-        # clean = "".join(c.lower() for c in s if c.isalnum())
-        # l, r = 0, len(clean) - 1
-        # while l < r:
-        #     if clean[l] != clean[r]:
-        #         return False
-        #     l += 1
-        #     r -= 1
-        # return True
