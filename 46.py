@@ -1,33 +1,31 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         # time: O(n * n!), space: O(n)
+        n = len(nums)
+        if n == 1:
+            return [nums[:]]
         res = []
-
-        def backtrack(idx):
-            if idx == len(nums):
-                res.append(nums[:])
-                return
-            for i in range(idx, len(nums)):
-                nums[i], nums[idx] = nums[idx], nums[i]
-                backtrack(idx + 1)
-                nums[i], nums[idx] = nums[idx], nums[i]
-        
-        backtrack(0)
+        for _ in range(n):
+            num = nums.pop(0)
+            perms = self.permute(nums)
+            for p in perms:
+                p.append(num)
+            res.extend(perms)
+            nums.append(num)
         return res
 
         # time: O(n * n!), space: O(n)
-        # res = []
-        # comb = []
+        # n = len(nums)
+        # perms = []
 
-        # def backtrack(idx):
-        #     if len(comb) == len(nums):
-        #         res.append(comb[:])
+        # def backtrack(start):
+        #     if start == n:
+        #         perms.append(nums[:])
         #         return
-        #     for n in nums:
-        #         if n not in comb:
-        #             comb.append(n)
-        #             backtrack(idx + 1)
-        #             comb.pop()
-        
+        #     for i in range(start, n):
+        #         nums[start], nums[i] = nums[i], nums[start]
+        #         backtrack(start + 1)
+        #         nums[start], nums[i] = nums[i], nums[start]
+
         # backtrack(0)
-        # return res
+        # return perms
