@@ -1,29 +1,17 @@
 class Solution:
     def isHappy(self, n: int) -> bool:
         # time: O(logn), space: O(1)
-        def getNextNumber(n):
-            output = 0
-            while n:
-                digit = n % 10
-                output += digit ** 2
+        if n == 1:
+            return True
+        seen = set()
+        while True:
+            newN = 0
+            while n > 0:
+                newN += (n % 10) ** 2
                 n //= 10
-            return output
-        
-        slow = getNextNumber(n)
-        fast = getNextNumber(getNextNumber(n))
-        while slow != fast:
-            if fast == 1:
+            if newN == 1:
                 return True
-            slow = getNextNumber(slow)
-            fast = getNextNumber(getNextNumber(fast))
-        return slow == 1
-
-        # time: O(n), space: O(n)
-        # seen = set()
-        # while True:
-        #     if n == 1:
-        #         return True
-        #     n = sum([int(x) ** 2 for x in str(n)])
-        #     if n in seen:
-        #         return False
-        #     seen.add(n)
+            elif newN in seen:
+                return False
+            seen.add(newN)
+            n = newN
