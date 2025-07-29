@@ -2,8 +2,6 @@ class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
         # time: O(n), space: O(n)
         res = []
-        if not nums:
-            return res
         i = 0
         while i < len(nums):
             start = nums[i]
