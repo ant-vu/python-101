@@ -9,8 +9,7 @@ class Solution:
         # time: O(n), space: O(w)
         if not root:
             return 0
-        q = deque()
-        q.append(root)
+        q = deque([root])
         depth = 0
         while q:
             depth += 1
