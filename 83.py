@@ -15,18 +15,16 @@ class Solution:
         return res
 
         # time: O(n), space: O(1)
-        # dummy = ListNode(next=head)
         # if not head:
-        #     return None
-        # slow = head
-        # fast = head.next
-        # while fast:
-        #     if slow.val == fast.val:
-        #         if fast.next == None:
-        #             slow.next = None
-        #         fast = fast.next
-        #         continue
-        #     slow.next = fast
-        #     slow = fast
-        #     fast = fast.next
+        #     return head
+        # dummy = ListNode(next=head)
+        # prev = head
+        # while head:
+        #     if prev.val == head.val:
+        #         head = head.next
+        #     else:
+        #         prev.next = head
+        #         prev = prev.next
+        #         head = head.next
+        # prev.next = head
         # return dummy.next
