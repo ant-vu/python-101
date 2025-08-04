@@ -6,30 +6,31 @@
 #         self.right = right
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
-        # time: O(logn * logn), space: O(logn)
-        def getDepth(node, left):
+        # time: O(log^2(n)), space: O(log(n))
+        def getDepth(node):
             depth = 0
             while node:
-                node = node.left if left else node.right
+                node = node.left
                 depth += 1
             return depth
         
         if not root:
             return 0
-        left = getDepth(root.left, True) + 1
-        right = getDepth(root.right, False) + 1
-        if left == right:
-            return (2 ** left) - 1
-        return 1 + self.countNodes(root.left) + self.countNodes(root.right)
+        leftDepth = getDepth(root.left)
+        rightDepth = getDepth(root.right)
+        if leftDepth == rightDepth:
+            return (2 ** leftDepth) + self.countNodes(root.right)
+        return (2 ** rightDepth) + self.countNodes(root.left)
 
-        # time: O(n), space: O(n)
-        # q = deque()
-        # q.append(root)
+        # time: O(n), space: O(w)
+        # if not root:
+        #     return 0
+        # q = deque([root])
         # cnt = 0
         # while q:
-        #     node = q.popleft()
-        #     if node:
+        #     for _ in range(len(q)):
         #         cnt += 1
+        #         node = q.popleft()
         #         if node.left:
         #             q.append(node.left)
         #         if node.right:
