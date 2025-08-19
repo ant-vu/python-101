@@ -1,8 +1,9 @@
 class Solution:
     def fib(self, n: int) -> int:
+        # time: O(n), space: O(1)
         if n <= 1:
             return n
-        l, r = 0, 1
+        a, b = 0, 1
         for _ in range(n - 1):
-            l, r = r, l + r
-        return r
+            a, b = b, a + b
+        return b
