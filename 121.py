@@ -1,9 +1,9 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         # time: O(n), space: O(1)
-        maxProfit = 0
-        minSeen = prices[0]
-        for i in range(1, len(prices)):
-            maxProfit = max(maxProfit, prices[i] - minSeen)
-            minSeen = min(minSeen, prices[i])
-        return maxProfit
+        profit = 0
+        buy = prices[0]
+        for sell in prices[1:]:
+            profit = max(profit, sell - buy)
+            buy = min(buy, sell)
+        return profit
