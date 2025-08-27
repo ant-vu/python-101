@@ -1,14 +1,15 @@
 class Solution:
     def numTilings(self, n: int) -> int:
         # time: O(n), space: O(n)
-        if n == 1:
-            return 1
-        if n == 2:
-            return 2
-        if n == 3:
-            return 5
-        mod = 10 ** 9 + 7
-        dp = [1, 1, 2, 5] + [0] * (n - 3)
-        for i in range(4, n + 1):
-            dp[i] = (dp[i - 1] * 2 + dp[i - 3]) % mod
-        return dp[n]
+        @cache
+        def solve(i, prevGap):
+            if i > n:
+                return 0
+            elif i == n:
+                return not prevGap
+            elif prevGap:
+                return solve(i + 1, False) + solve(i + 1, True)
+            else:
+                return solve(i + 1, False) + solve(i + 2, False) + 2 * solve(i + 2, True)
+        
+        return solve(0, False) % (10 ** 9 + 7)

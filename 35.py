@@ -1,8 +1,7 @@
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
-        # time: O(log(n)), space: O(1)
-        l = 0
-        r = len(nums) - 1
+        # time: O(logn), space: O(1)
+        l, r = 0, len(nums) - 1
         while l <= r:
             m = l + (r - l) // 2
             if nums[m] == target:
