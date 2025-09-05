@@ -16,5 +16,5 @@ class Solution:
                 return m
             elif res == -1:
                 r = m - 1
-            elif res == 1:
+            else:
                 l = m + 1
